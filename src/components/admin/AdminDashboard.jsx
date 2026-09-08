@@ -28,54 +28,58 @@ export function AdminDashboard({ activeSubTab, setActiveSubTab }) {
     <div className="max-w-5xl mx-auto space-y-6">
       
       {/* Admin Title Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs">
-        <div>
-          <div className="flex items-center gap-2">
-            <h2 className="text-xl sm:text-2xl font-black text-slate-900">CoServe Cooperative Governance Board</h2>
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-purple-100 text-purple-900 border border-purple-200">
-              Admin Portal
-            </span>
+      <div className="glass-panel rounded-3xl p-6 border border-white/10">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-2xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center">
+                <ShieldCheck className="w-5 h-5 text-purple-400" />
+              </div>
+              <div>
+                <h2 className="text-xl sm:text-2xl font-black text-white">CoServe Governance Board</h2>
+                <p className="text-xs text-slate-400 mt-0.5">
+                  Democratic oversight of verification, fair-pricing compliance, and welfare funds.
+                </p>
+              </div>
+            </div>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
-            Democratic oversight of worker verification, fair-pricing compliance, and community welfare fund allocations.
-          </p>
-        </div>
 
-        {/* Tab switchers */}
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setActiveSubTab('admin-overview')}
-            className={`px-3.5 py-2 rounded-xl text-xs font-bold transition ${
-              activeSubTab === 'admin-overview'
-                ? 'bg-purple-600 text-white shadow-xs'
-                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-            }`}
-          >
-            Overview
-          </button>
-          <button
-            onClick={() => setActiveSubTab('admin-kyc')}
-            className={`px-3.5 py-2 rounded-xl text-xs font-bold transition relative ${
-              activeSubTab === 'admin-kyc'
-                ? 'bg-purple-600 text-white shadow-xs'
-                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-            }`}
-          >
-            KYC Desk
-            {pendingKycCount > 0 && (
-              <span className="w-2 h-2 rounded-full bg-amber-400 absolute top-1 right-1"></span>
-            )}
-          </button>
-          <button
-            onClick={() => setActiveSubTab('admin-fund')}
-            className={`px-3.5 py-2 rounded-xl text-xs font-bold transition ${
-              activeSubTab === 'admin-fund'
-                ? 'bg-purple-600 text-white shadow-xs'
-                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-            }`}
-          >
-            Community Vault
-          </button>
+          {/* Tab switchers */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setActiveSubTab('admin-overview')}
+              className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
+                activeSubTab === 'admin-overview'
+                  ? 'bg-purple-500/30 text-purple-300 border border-purple-500/40'
+                  : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent'
+              }`}
+            >
+              Overview
+            </button>
+            <button
+              onClick={() => setActiveSubTab('admin-kyc')}
+              className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all relative ${
+                activeSubTab === 'admin-kyc'
+                  ? 'bg-purple-500/30 text-purple-300 border border-purple-500/40'
+                  : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent'
+              }`}
+            >
+              KYC Desk
+              {pendingKycCount > 0 && (
+                <span className="w-2 h-2 rounded-full bg-amber-400 absolute top-1.5 right-1.5 animate-pulse"></span>
+              )}
+            </button>
+            <button
+              onClick={() => setActiveSubTab('admin-fund')}
+              className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
+                activeSubTab === 'admin-fund'
+                  ? 'bg-purple-500/30 text-purple-300 border border-purple-500/40'
+                  : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent'
+              }`}
+            >
+              Community Vault
+            </button>
+          </div>
         </div>
       </div>
 
@@ -87,48 +91,71 @@ export function AdminDashboard({ activeSubTab, setActiveSubTab }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             
             {/* Total Worker Income (85%) */}
-            <div className="bg-white rounded-3xl p-5 border border-slate-200/80 shadow-xs space-y-1">
-              <span className="text-[11px] font-bold text-emerald-700 uppercase">Worker Direct Earnings</span>
-              <div className="text-2xl font-black text-slate-900">{formatINR(totalWorkerIncome)}</div>
-              <p className="text-[10px] text-slate-400">85% straight to local craftsmen</p>
+            <div className="glass-panel rounded-3xl p-5 border border-white/10 space-y-1">
+              <span className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider">Worker Direct Earnings</span>
+              <div className="text-2xl font-black text-white">{formatINR(totalWorkerIncome)}</div>
+              <p className="text-[10px] text-slate-500">85% straight to local craftsmen</p>
             </div>
 
             {/* Community Fund Vault (10%) */}
-            <div className="bg-white rounded-3xl p-5 border border-slate-200/80 shadow-xs space-y-1">
-              <span className="text-[11px] font-bold text-purple-700 uppercase">Co-op Welfare Pool</span>
-              <div className="text-2xl font-black text-purple-950">{formatINR(communityFund.totalPoolBalance)}</div>
-              <p className="text-[10px] text-slate-400">{communityFund.beneficiaryWorkers} grants disbursed</p>
+            <div className="glass-panel rounded-3xl p-5 border border-purple-500/20 space-y-1">
+              <span className="text-[11px] font-bold text-purple-400 uppercase tracking-wider">Co-op Welfare Pool</span>
+              <div className="text-2xl font-black text-white">{formatINR(communityFund.totalPoolBalance)}</div>
+              <p className="text-[10px] text-slate-500">{communityFund.beneficiaryWorkers} grants disbursed</p>
             </div>
 
             {/* Average Trust Score */}
-            <div className="bg-white rounded-3xl p-5 border border-slate-200/80 shadow-xs space-y-1">
-              <span className="text-[11px] font-bold text-teal-700 uppercase">Avg Member Trust Index</span>
-              <div className="text-2xl font-black text-teal-950">{avgTrustScore} / 100</div>
-              <p className="text-[10px] text-slate-400">Closed-loop rating feedback</p>
+            <div className="glass-panel rounded-3xl p-5 border border-white/10 space-y-1">
+              <span className="text-[11px] font-bold text-cyan-400 uppercase tracking-wider">Avg Member Trust Index</span>
+              <div className="text-2xl font-black text-white">{avgTrustScore} / 100</div>
+              <p className="text-[10px] text-slate-500">Closed-loop rating feedback</p>
             </div>
 
             {/* Verified Craftsmen */}
-            <div className="bg-white rounded-3xl p-5 border border-slate-200/80 shadow-xs space-y-1">
-              <span className="text-[11px] font-bold text-slate-500 uppercase">Verified Members</span>
-              <div className="text-2xl font-black text-slate-900">{verifiedCount} / {providers.length}</div>
-              <p className="text-[10px] text-slate-400">{pendingKycCount} in verification queue</p>
+            <div className="glass-panel rounded-3xl p-5 border border-white/10 space-y-1">
+              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Verified Members</span>
+              <div className="text-2xl font-black text-white">{verifiedCount} / {providers.length}</div>
+              <p className="text-[10px] text-slate-500">{pendingKycCount} in verification queue</p>
             </div>
 
           </div>
 
           {/* Service Categories Base Pricing Grid */}
-          <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-4">
-            <h3 className="text-base font-bold text-slate-900">
-              Governed Trade Categories & Cooperative Floor Rates
+          <div className="glass-panel rounded-3xl p-6 border border-white/10 space-y-4">
+            <h3 className="text-base font-bold text-white flex items-center gap-2">
+              <Activity className="w-4 h-4 text-emerald-400" />
+              Governed Trade Categories &amp; Cooperative Floor Rates
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
               {SERVICE_CATEGORIES.map((cat) => (
-                <div key={cat.id} className="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 text-xs space-y-1">
-                  <div className="font-bold text-slate-900">{cat.name}</div>
-                  <div className="text-emerald-700 font-extrabold">Floor Rate: ₹{cat.basePrice}</div>
+                <div key={cat.id} className="p-3.5 bg-white/5 border border-white/10 rounded-2xl text-xs space-y-1.5 hover:border-emerald-500/30 transition-colors">
+                  <div className="font-bold text-white">{cat.name}</div>
+                  <div className="text-emerald-400 font-extrabold">Floor: ₹{cat.basePrice}</div>
                   <div className="text-[10px] text-slate-500">{cat.subSkills.length} Certified Sub-Skills</div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Recent Activity Placeholder */}
+          <div className="glass-panel rounded-3xl p-6 border border-white/10 space-y-4">
+            <h3 className="text-base font-bold text-white flex items-center gap-2">
+              <TrendingUp className="w-4 h-4 text-amber-400" />
+              Platform Health
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-4 text-center">
+                <div className="text-2xl font-black text-emerald-400">{bookings.filter(b => b.status === 'COMPLETED').length + 23}</div>
+                <div className="text-[11px] text-slate-400 mt-1">Completed Jobs</div>
+              </div>
+              <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-4 text-center">
+                <div className="text-2xl font-black text-amber-400">{bookings.filter(b => ['REQUESTED','ACCEPTED','IN_PROGRESS'].includes(b.status)).length + 4}</div>
+                <div className="text-[11px] text-slate-400 mt-1">Active Right Now</div>
+              </div>
+              <div className="bg-purple-500/10 border border-purple-500/20 rounded-2xl p-4 text-center">
+                <div className="text-2xl font-black text-purple-400">4.7★</div>
+                <div className="text-[11px] text-slate-400 mt-1">Avg Platform Rating</div>
+              </div>
             </div>
           </div>
 

@@ -7,13 +7,13 @@ export function SkillsManager({ provider, onUpdateSkills }) {
   const [selectedSkills, setSelectedSkills] = useState(provider?.skills || []);
   const [savedSuccess, setSavedSuccess] = useState(false);
 
-  const toggleSkill = (skill) => {
+  const toggleSkill = (subSkill) => {
     let updated;
-    if (selectedSkills.includes(skill)) {
-      if (selectedSkills.length === 1) return; // Must have at least 1 skill
-      updated = selectedSkills.filter(s => s !== skill);
+    if (selectedSkills.includes(subSkill)) {
+      if (selectedSkills.length === 1) return;
+      updated = selectedSkills.filter(s => s !== subSkill);
     } else {
-      updated = [...selectedSkills, skill];
+      updated = [...selectedSkills, subSkill];
     }
     setSelectedSkills(updated);
     onUpdateSkills(provider.id, updated);
@@ -22,23 +22,23 @@ export function SkillsManager({ provider, onUpdateSkills }) {
   };
 
   return (
-    <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-6">
+    <div className="rounded-3xl bg-dark-900/90 backdrop-blur-2xl p-6 sm:p-7 border border-white/10 shadow-2xl space-y-6 text-left">
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-100">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-white/10">
         <div>
-          <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
-            <Wrench className="w-5 h-5 text-emerald-600" />
+          <h3 className="text-base font-bold text-white flex items-center gap-2">
+            <Wrench className="w-5 h-5 text-emerald-400" />
             Skill Specializations ({currentCategory.name})
           </h3>
-          <p className="text-xs text-slate-500">
-            Select the exact tasks you perform. This directly boosts your <strong>40% Skill Match</strong> score in customer searches!
+          <p className="text-xs text-slate-400 mt-0.5">
+            Toggle the exact tasks you perform. This directly maximizes your <strong>40% Skill Match</strong> score in customer searches!
           </p>
         </div>
 
         {savedSuccess && (
-          <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 flex items-center gap-1 animate-fade-in">
-            <Check className="w-3.5 h-3.5" /> Skills Updated Live!
+          <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-3.5 py-1 rounded-full border border-emerald-500/30 flex items-center gap-1.5 animate-in fade-in">
+            <Check className="w-3.5 h-3.5 stroke-[3]" /> Skills Updated Live!
           </span>
         )}
       </div>
@@ -55,34 +55,34 @@ export function SkillsManager({ provider, onUpdateSkills }) {
               onClick={() => toggleSkill(subSkill)}
               className={`p-4 rounded-2xl border text-left flex items-start justify-between gap-3 transition-all ${
                 isSelected
-                  ? 'bg-emerald-50/70 border-emerald-400 ring-2 ring-emerald-500/20 shadow-xs'
-                  : 'bg-slate-50 border-slate-200 hover:border-slate-300'
+                  ? 'bg-emerald-950/40 border-emerald-500/50 shadow-glow-emerald ring-1 ring-emerald-500/30'
+                  : 'bg-white/[0.03] border-white/[0.08] hover:border-white/20'
               }`}
             >
               <div className="space-y-1">
-                <span className={`text-xs font-bold block ${isSelected ? 'text-emerald-950' : 'text-slate-800'}`}>
+                <span className={`text-xs font-bold block ${isSelected ? 'text-white' : 'text-slate-300'}`}>
                   {subSkill}
                 </span>
-                <span className="text-[10px] text-slate-500 block">
+                <span className="text-[10px] text-slate-400 block">
                   {isSelected ? '✓ Active in your Smart Match profile' : '+ Click to add to your skills'}
                 </span>
               </div>
 
               <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 transition ${
-                isSelected ? 'bg-emerald-600 text-white' : 'border-2 border-slate-300 text-transparent'
+                isSelected ? 'bg-emerald-500 text-dark-950' : 'border border-white/20 text-transparent'
               }`}>
-                <Check className="w-3.5 h-3.5" />
+                <Check className="w-3.5 h-3.5 stroke-[3]" />
               </div>
             </button>
           );
         })}
       </div>
 
-      {/* Cooperative Skill Endorsement Note */}
-      <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 text-xs flex items-center gap-3">
-        <Award className="w-5 h-5 text-amber-500 shrink-0" />
-        <p className="text-slate-600">
-          Want to add skills outside your primary trade? Submit a peer certification request to the <strong>CoServe Cooperative Board</strong> in your area.
+      {/* Peer Certification Note */}
+      <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] text-xs flex items-center gap-3 text-slate-300">
+        <Award className="w-5 h-5 text-amber-400 shrink-0" />
+        <p>
+          Want to add skills outside your trade category? Submit a verification request to the <strong>CoServe Cooperative Council</strong>.
         </p>
       </div>
 
