@@ -125,36 +125,13 @@ export function Hero({ onFindService, onBecomeProvider, selectedCategory, onSele
           {/* RIGHT — 3D Service Network */}
           <div className="lg:col-span-6 relative">
             <div className="relative">
-              {/* Premium frame */}
-              <div className="absolute -inset-2 rounded-3xl bg-gradient-to-br from-emerald-500/10 via-transparent to-purple-500/10 blur-xl" />
-              <div className="relative glass-panel rounded-3xl p-2 border border-white/10">
+              {/* Premium atmospheric glow frame */}
+              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-br from-emerald-500/15 via-transparent to-cyan-500/10 blur-xl pointer-events-none" />
+              <div className="relative">
                 <ServiceNetwork
                   selectedCategory={selectedCategory}
                   onSelectCategory={onSelectCategory}
                 />
-              </div>
-            </div>
-
-            {/* Floating stat cards */}
-            <div className="absolute -left-4 top-8 hidden xl:block">
-              <div className="glass-panel rounded-2xl p-3 border border-emerald-500/20 shadow-glow-emerald animate-float-slow">
-                <div className="text-[10px] text-slate-400 font-semibold">Available Now</div>
-                <div className="text-sm font-black text-emerald-400">168 Providers</div>
-              </div>
-            </div>
-            <div className="absolute -right-4 bottom-16 hidden xl:block">
-              <div className="glass-panel rounded-2xl p-3 border border-amber-500/20 shadow-glow-gold animate-float-delayed">
-                <div className="flex items-center gap-1 text-amber-400">
-                  <Star className="w-3 h-3 fill-amber-400" />
-                  <span className="text-sm font-black">4.9</span>
-                </div>
-                <div className="text-[10px] text-slate-400">Avg Rating</div>
-              </div>
-            </div>
-            <div className="absolute -left-2 bottom-8 hidden xl:block">
-              <div className="glass-panel rounded-2xl p-3 border border-cyan-500/20 shadow-glow-cyan animate-float-delayed-2">
-                <div className="text-[10px] text-slate-400 font-semibold">Response Time</div>
-                <div className="text-sm font-black text-cyan-400">≤ 15 min</div>
               </div>
             </div>
           </div>
