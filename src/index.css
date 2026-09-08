@@ -5,12 +5,19 @@
 @layer base {
   body {
     @apply bg-dark-950 text-slate-100 font-sans selection:bg-emerald-500/30 selection:text-emerald-200 antialiased;
-    background-color: #030508;
+    background-color: #030506;
     color: #f1f5f9;
+  }
+
+  * {
+    scroll-behavior: smooth;
   }
 }
 
-/* Apple + Linear + Stripe Spatial Glassmorphism & Atmospheric Depth */
+/* ============================================
+   GLASSMORPHISM SYSTEM
+   ============================================ */
+
 .glass-panel {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
   backdrop-filter: blur(20px);
@@ -63,8 +70,52 @@
   outline: none;
 }
 
-/* Atmospheric Ambient Lighting */
-.bg-grid-pattern {
+/* ============================================
+   PREMIUM SECTION SYSTEM
+   ============================================ */
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
+.section-heading {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.section-heading-gradient {
+  background: linear-gradient(135deg, #10d6a3 0%, #22d3ee 50%, #34d399 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* ============================================
+   BACKGROUND PATTERNS
+   ============================================ */
+
+.bg-grid-dots {
+  background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.bg-grid-lines {
   background-size: 40px 40px;
   background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
@@ -78,21 +129,260 @@
     radial-gradient(circle at 15% 40%, rgba(59, 130, 246, 0.08) 0%, transparent 45%);
 }
 
-/* Custom Sleek Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+.bg-cooperative-glow {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgba(245, 158, 11, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 0%, rgba(34, 211, 238, 0.06) 0%, transparent 40%);
 }
 
-::-webkit-scrollbar-track {
-  background: #07090e;
+/* ============================================
+   ANIMATED GRADIENT TEXT
+   ============================================ */
+
+.text-gradient-emerald {
+  background: linear-gradient(135deg, #10d6a3, #22d3ee, #34d399, #10b981);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 4s ease infinite;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #1d2436;
-  border-radius: 9999px;
+.text-gradient-gold {
+  background: linear-gradient(135deg, #fcd34d, #f59e0b, #fbbf24);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 3s ease infinite;
 }
 
-::-webkit-scrollbar-thumb:hover {
+/* ============================================
+   PREMIUM BUTTONS
+   ============================================ */
+
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
   background: #10b981;
+  color: #030506;
+  font-weight: 900;
+  font-size: 0.875rem;
+  border-radius: 1rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.4);
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.btn-primary:hover {
+  background: #34d399;
+  box-shadow: 0 0 60px -10px rgba(16, 185, 129, 0.6);
+  transform: translateY(-2px);
+}
+
+.btn-primary:hover::after {
+  opacity: 1;
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(12px);
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   SERVICE CARD PREMIUM
+   ============================================ */
+
+.service-card-premium {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-card-premium::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 120%, var(--card-color, rgba(16,185,129,0.15)), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.service-card-premium:hover::before {
+  opacity: 1;
+}
+
+.service-card-premium:hover {
+  transform: translateY(-8px);
+  border-color: var(--card-border, rgba(16,185,129,0.3));
+}
+
+/* ============================================
+   MATCH SCORE ANIMATION
+   ============================================ */
+
+.match-score-ring {
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ============================================
+   NETWORK VISUALIZATION
+   ============================================ */
+
+.network-particle {
+  animation: particle-flow 2s linear infinite;
+  stroke-dasharray: 20 80;
+}
+
+.network-line {
+  stroke-dasharray: 1000;
+  animation: draw-line 1.5s ease-out forwards;
+}
+
+/* ============================================
+   JOB JOURNEY TIMELINE
+   ============================================ */
+
+.journey-stage {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.journey-stage:hover {
+  transform: translateY(-4px);
+}
+
+.journey-particle {
+  animation: particle-flow 3s linear infinite;
+}
+
+/* ============================================
+   TRUST RINGS
+   ============================================ */
+
+.trust-ring-1 { animation: spin 12s linear infinite; }
+.trust-ring-2 { animation: spin-reverse 16s linear infinite; }
+.trust-ring-3 { animation: spin 20s linear infinite; }
+
+@keyframes spin-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+/* ============================================
+   MONEY FLOW PARTICLES
+   ============================================ */
+
+.money-particle {
+  animation: particle-flow 1.5s linear infinite;
+}
+
+.money-particle:nth-child(2) { animation-delay: 0.5s; }
+.money-particle:nth-child(3) { animation-delay: 1s; }
+
+/* ============================================
+   LIVE TICKER
+   ============================================ */
+
+.ticker-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker-content {
+  display: inline-block;
+  animation: ticker 25s linear infinite;
+}
+
+/* ============================================
+   SCROLL REVEAL
+   ============================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #07090e; }
+::-webkit-scrollbar-thumb { background: #1d2436; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #10b981; }
+
+/* ============================================
+   PROVIDER CARD ACCENT COLORS
+   ============================================ */
+
+.provider-accept-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.provider-accept-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.3), transparent 70%);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.3s;
+}
+
+.provider-accept-btn:active::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ============================================
+   REDUCED MOTION SUPPORT
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
